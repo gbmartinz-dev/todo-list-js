@@ -24,8 +24,8 @@ const limparTarefas = () => {
 }
 
 const atualizarTela = () => {
-    limparTela();
-    const banco = getBanco();
+    limparTarefas();
+    const banco = getBanco(); 
     banco.forEach ( (item, indice) => criarItem (item.tarefa, item.status, indice));
 }
 
@@ -34,7 +34,7 @@ const inserirItem = (evento) => {
     const texto = evento.target.value;
     if (tecla === 'Enter'){
         const banco = getBanco();
-        banco.push({'tarefa': texto, 'status': ''});
+        banco.push ({'tarefa': texto, 'status': ''});
         setBanco(banco);
         atualizarTela();
         evento.target.value = '';
@@ -50,14 +50,14 @@ const removerItem = (indice) => {
 
 const atualizarItem = (indice) => {
     const banco = getBanco();
-    banco[indice].status = banco[indice].status === '' ? 'chacked': '';
+    banco[indice].status = banco[indice].status === '' ? 'checked' : '';
     setBanco(banco);
     atualizarTela();
 }
 
 const clickItem = (evento) => {
     const elemento = evento.target;
-    console.log(elemento.type);
+    console.log (elemento.type);
     if (elemento.type === 'button') {
         const indice = elemento.dataset.indice;
         removerItem (indice);
